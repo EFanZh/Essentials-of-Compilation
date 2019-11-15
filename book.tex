@@ -1408,7 +1408,7 @@ typically a structural recursive function, per pass.
   subexpression (i.e. operator and operand, and hence \key{opera*}) is
   a simple expression, we shall introduce temporary variables to hold
   the results of subexpressions.
-  
+
 \item[Pass \key{explicate-control}] To make the execution order of the
   program explicit, we shall convert from the abstract syntax tree
   representation into a graph representation in which each node
@@ -1765,7 +1765,7 @@ $\Rightarrow$
 We recommend implementing this pass with two mutually recursive
 functions, \code{rco-arg} and \code{rco-exp}. The idea is to apply
 \code{rco-arg} to subexpressions that need to become simple and to
-apply \code{rco-exp} to subexpressions can stay complex.  
+apply \code{rco-exp} to subexpressions can stay complex.
 Both functions take an expression in $R_1$ as input.
 The \code{rco-exp} function returns an expression.
 The \code{rco-arg} function returns two things:
@@ -1870,7 +1870,7 @@ makes this explicit.\\
 \begin{minipage}{0.4\textwidth}
 \begin{lstlisting}
 (program ()
-  (let ([y (let ([x.1 20]) 
+  (let ([y (let ([x.1 20])
              (let ([x.2 22])
                (+ x.1 x.2)))])
    y))
@@ -1882,7 +1882,7 @@ $\Rightarrow$
 \begin{minipage}{0.4\textwidth}
 \begin{lstlisting}
 (program ()
-  ((start . 
+  ((start .
    (seq (assign x.1 20)
    (seq (assign x.2 22)
    (seq (assign y (+ x.1 x.2))
@@ -1915,7 +1915,7 @@ section.
 \begin{minipage}{0.4\textwidth}
 \begin{lstlisting}
 (program ((locals . (x.1 x.2 y)))
-  ((start . 
+  ((start .
    (seq (assign x.1 20)
    (seq (assign x.2 22)
    (seq (assign y (+ x.1 x.2))
@@ -2149,7 +2149,7 @@ If you want your program to run on Mac OS X, your code needs to
 determine whether or not it is running on a Mac, and prefix
 underscores to labels like \key{main}.  You can determine the platform
 with the Racket call \code{(system-type 'os)}, which returns
-\code{'macosx}, \code{'unix}, or \code{'windows}.  
+\code{'macosx}, \code{'unix}, or \code{'windows}.
 %% In addition to
 %% placing underscores on \key{main}, you need to put them in front of
 %% \key{callq} labels (so \code{callq print\_int} becomes \code{callq
@@ -2580,7 +2580,7 @@ numbers in the square (writing very small). For example, if the number
 $1$ is assigned to a square, then by process of elimination, you can
 write the pencil mark $1$ in all the squares in the same row, column,
 and region. Many Sudoku computer games provide automatic support for
-Pencil Marks. 
+Pencil Marks.
 %
 The Pencil Marks technique corresponds to the notion of color
 \emph{saturation} due to \cite{Brelaz:1979eu}.  The saturation of a
@@ -2826,7 +2826,7 @@ arrive at the assignment:
   w \mapsto \key{-16(\%rbp)},  \,
   x \mapsto \key{-8(\%rbp)}, \\
   y \mapsto \key{\%rcx},  \,
-  z\mapsto \key{-8(\%rbp)}, 
+  z\mapsto \key{-8(\%rbp)},
   t.1\mapsto \key{\%rcx} \}
 \end{gather*}
 Applying this assignment to our running example, on the left, yields
@@ -2920,7 +2920,7 @@ shown in Figure~\ref{fig:reg-alloc-passes}.
   \code{uncover-live}, \code{build-interference}, and
   \code{allocate-registers} replace the \code{assign-homes} pass of
   Section~\ref{sec:assign-r1}.
-  
+
   We recommend that you create a helper function named
   \code{color-graph} that takes an interference graph and a list of
   all the variables in the program. This function should return a
@@ -2934,7 +2934,7 @@ shown in Figure~\ref{fig:reg-alloc-passes}.
   code from the \code{assign-homes} pass from
   Section~\ref{sec:assign-r1} to replace the variables with their
   assigned location.
-  
+
   Test your updated compiler by creating new example programs that
   exercise all of the register allocation algorithm, such as forcing
   variables to be spilled to the stack.
@@ -3275,7 +3275,7 @@ integers.
   \itm{cmp} &::= & \key{eq?} \mid \key{<} \mid \key{<=} \mid \key{>} \mid \key{>=} \\
   \Exp &::=& \gray{\Int \mid (\key{read}) \mid (\key{-}\;\Exp) \mid (\key{+} \; \Exp\;\Exp)}  \mid (\key{-}\;\Exp\;\Exp) \\
      &\mid&  \gray{\Var \mid \LET{\Var}{\Exp}{\Exp}} \\
-     &\mid& \key{\#t} \mid \key{\#f} 
+     &\mid& \key{\#t} \mid \key{\#f}
       \mid (\key{and}\;\Exp\;\Exp) \mid (\key{or}\;\Exp\;\Exp)
       \mid (\key{not}\;\Exp) \\
       &\mid& (\itm{cmp}\;\Exp\;\Exp) \mid \IF{\Exp}{\Exp}{\Exp} \\
@@ -3725,16 +3725,16 @@ story for \code{block62} is similar.
           (eq? (read) 0)
           (eq? (read) 2))
       (+ 10 32)
-      (+ 700 77)))  
+      (+ 700 77)))
 \end{lstlisting}
 \hspace{40pt}$\Downarrow$
 \begin{lstlisting}
 (program ()
   (if (if (let ([tmp52 (read)])
             (eq? tmp52 1))
-          (let ([tmp53 (read)]) 
+          (let ([tmp53 (read)])
             (eq? tmp53 0))
-          (let ([tmp54 (read)]) 
+          (let ([tmp54 (read)])
             (eq? tmp54 2)))
    (+ 10 32)
    (+ 700 77)))
@@ -3762,14 +3762,14 @@ $\Rightarrow$
    (block57 . (goto block55))
    (block56 . (return (+ 700 77)))
    (block55 . (return (+ 10 32)))
-   (start . 
+   (start .
      (seq (assign tmp52 (read))
           (if (eq? tmp52 1)
                (goto block61)
                (goto block62))))))
 \end{lstlisting}
 \end{minipage}
-\end{tabular} 
+\end{tabular}
 
 \caption{Example translation from $R_2$ to $C_1$
   via the \code{explicate-control}.}
@@ -4097,7 +4097,7 @@ the second argument in \key{rax}.
 The second argument of the \key{movzbq} must be a register.
 %
 There are no special restrictions on the x86 instructions
-\key{jmp-if}, \key{jmp}, and \key{label}. 
+\key{jmp-if}, \key{jmp}, and \key{label}.
 
 \begin{exercise}\normalfont
 Update \code{patch-instructions} to handle the new x86 instructions.
@@ -4140,7 +4140,7 @@ $\Downarrow$
       (movq (int 0) (reg rax))
       (jmp conclusion)))
   (block31 .
-    (block () 
+    (block ()
       (movq (int 42) (reg rax))
       (jmp conclusion)))
   (start .
@@ -4444,13 +4444,13 @@ $40$, to which we add the $2$, the element at index $0$ of the
   \itm{cmp} &::= & \gray{  \key{eq?} \mid \key{<} \mid \key{<=} \mid \key{>} \mid \key{>=}  } \\
   \Exp &::=& \gray{  \Int \mid (\key{read}) \mid (\key{-}\;\Exp) \mid (\key{+} \; \Exp\;\Exp) \mid (\key{-}\;\Exp\;\Exp) }  \\
   &\mid&  \gray{  \Var \mid \LET{\Var}{\Exp}{\Exp}  }\\
-  &\mid& \gray{ \key{\#t} \mid \key{\#f} 
-   \mid (\key{and}\;\Exp\;\Exp) 
+  &\mid& \gray{ \key{\#t} \mid \key{\#f}
+   \mid (\key{and}\;\Exp\;\Exp)
    \mid (\key{or}\;\Exp\;\Exp)
    \mid (\key{not}\;\Exp) } \\
-  &\mid& \gray{  (\itm{cmp}\;\Exp\;\Exp) 
+  &\mid& \gray{  (\itm{cmp}\;\Exp\;\Exp)
    \mid \IF{\Exp}{\Exp}{\Exp}  } \\
-  &\mid& (\key{vector}\;\Exp^{+}) 
+  &\mid& (\key{vector}\;\Exp^{+})
    \mid (\key{vector-ref}\;\Exp\;\Int) \\
   &\mid& (\key{vector-set!}\;\Exp\;\Int\;\Exp)\\
   &\mid& (\key{void}) \\
@@ -4560,7 +4560,7 @@ temporaries generated by \code{remove-complex-opera*}).
           (unless (and (exact-nonnegative-integer? i) (< i (length ts)))
             (error 'type-check-exp "invalid index ~a" i))
           (let ([t (list-ref ts i)])
-            (values `(has-type (vector-ref ,e^ (has-type ,i Integer)) ,t) 
+            (values `(has-type (vector-ref ,e^ (has-type ,i Integer)) ,t)
                     t))]
          [else (error "expected a vector in vector-ref, not" t)])]
       [`(eq? ,arg1 ,arg2)
@@ -4991,7 +4991,7 @@ Figure~\ref{fig:expose-alloc-output} shows the output of the
    \mid (\key{vector-ref}\, \Arg\, \Int)  \\
    &\mid& (\key{vector-set!}\,\Arg\,\Int\,\Arg)
     \mid (\key{global-value} \,\itm{name}) \mid (\key{void}) \\
-\Stmt &::=& \gray{ \ASSIGN{\Var}{\Exp} \mid \RETURN{\Exp} } 
+\Stmt &::=& \gray{ \ASSIGN{\Var}{\Exp} \mid \RETURN{\Exp} }
        \mid (\key{collect} \,\itm{int}) \\
 \Tail &::= & \gray{\RETURN{\Exp} \mid (\key{seq}\;\Stmt\;\Tail)} \\
       &\mid& \gray{(\key{goto}\,\itm{label})
@@ -5215,8 +5215,8 @@ Figure~\ref{fig:select-instr-output-gc} shows the output of the
                (movq (int 16) (reg rsi))
                (callq collect)
                (jmp block58))
-  (block59 . (block () 
-               (movq (int 0) (var collectret50)) 
+  (block59 . (block ()
+               (movq (int 0) (var collectret50))
                (jmp block58)))
   (block58 . (block ()
                (movq (global-value free_ptr) (var alloc47))
@@ -5505,7 +5505,7 @@ inside each other.
 \itm{cmp} &::= & \gray{  \key{eq?} \mid \key{<} \mid \key{<=} \mid \key{>} \mid \key{>=}  } \\
   \Exp &::=& \gray{ \Int \mid (\key{read}) \mid (\key{-}\;\Exp) \mid (\key{+} \; \Exp\;\Exp) \mid (\key{-}\;\Exp\;\Exp)}  \\
     &\mid&  \gray{ \Var \mid \LET{\Var}{\Exp}{\Exp} }\\
-    &\mid& \gray{ \key{\#t} \mid \key{\#f} 
+    &\mid& \gray{ \key{\#t} \mid \key{\#f}
     \mid (\key{and}\;\Exp\;\Exp)
     \mid (\key{or}\;\Exp\;\Exp)
     \mid (\key{not}\;\Exp)} \\
@@ -5663,7 +5663,7 @@ space called a frame. The caller sets the stack pointer, register
 \code{rsp}, to the last data item in its frame. The callee must not
 change anything in the caller's frame, that is, anything that is at or
 above the stack pointer. The callee is free to use locations that are
-below the stack pointer. 
+below the stack pointer.
 
 Regarding (3) the sharing of registers between different functions,
 recall from Section~\ref{sec:calling-conventions} that the registers
@@ -5683,7 +5683,7 @@ from the base pointer.
 Figure~\ref{fig:call-frames} shows the layout of the caller and callee
 frames.
 %% If we were to use stack arguments, they would be between the
-%% caller locals and the callee return address. 
+%% caller locals and the callee return address.
 
 
 
@@ -5883,7 +5883,7 @@ Figure~\ref{fig:f1-syntax}.
 %% Distinguishing between calls in tail position and non-tail position
 %% requires the pass to have some notion of context. We recommend using
 %% two mutually recursive functions, one for processing expressions in
-%% tail position and another for the rest. 
+%% tail position and another for the rest.
 
 Placing this pass after \code{uniquify} is a good idea, because it
 will make sure that there are no local variables and functions that
@@ -5903,7 +5903,7 @@ into a vector, making that subsequent vector the $n$th argument.
 \begin{tabular}{lll}
 \begin{minipage}{0.2\textwidth}
 \begin{lstlisting}
-  (|$f$| |$x_1$| |$\ldots$| |$x_n$|) 
+  (|$f$| |$x_1$| |$\ldots$| |$x_n$|)
 \end{lstlisting}
 \end{minipage}
 &
@@ -5964,7 +5964,7 @@ the function definitions.
    \mid (\key{vector-ref}\, \Arg\, \Int)  } \\
    &\mid& \gray{  (\key{vector-set!}\,\Arg\,\Int\,\Arg) \mid (\key{global-value} \,\itm{name}) \mid (\key{void}) } \\
    &\mid& (\key{fun-ref}\,\itm{label}) \mid (\key{call} \,\Arg\,\Arg^{*}) \\
-\Stmt &::=& \gray{ \ASSIGN{\Var}{\Exp} \mid \RETURN{\Exp} 
+\Stmt &::=& \gray{ \ASSIGN{\Var}{\Exp} \mid \RETURN{\Exp}
        \mid (\key{collect} \,\itm{int}) }\\
 \Tail &::= & \gray{\RETURN{\Exp} \mid (\key{seq}\;\Stmt\;\Tail)} \\
       &\mid& \gray{(\key{goto}\,\itm{label})
@@ -6002,7 +6002,7 @@ language, whose syntax is defined in Figure~\ref{fig:x86-3}.
 \begin{array}{lcl}
 \Arg &::=&  \gray{  \INT{\Int} \mid \REG{\itm{register}}
     \mid (\key{deref}\,\itm{register}\,\Int) } \\
-   &\mid& \gray{ (\key{byte-reg}\; \itm{register}) 
+   &\mid& \gray{ (\key{byte-reg}\; \itm{register})
     \mid   (\key{global-value}\; \itm{name})  } \\
    &\mid& (\key{fun-ref}\; \itm{label})\\
 \itm{cc} & ::= & \gray{  \key{e} \mid \key{l} \mid \key{le} \mid \key{g} \mid \key{ge}  } \\
@@ -6105,7 +6105,7 @@ function definition.)
 
 %% The rest of the passes need only minor modifications to handle the new
 %% kinds of AST nodes: \code{fun-ref}, \code{indirect-callq}, and
-%% \code{leaq}. 
+%% \code{leaq}.
 
 Inside \code{uncover-live}, when computing the $W$ set (written
 variables) for an \code{indirect-callq} instruction, we recommend
@@ -6186,7 +6186,7 @@ $\Downarrow$
            [y88 : Integer]) : Integer ()
    ((add86start . (return (+ x87 y88)))))
  (define (main) : Integer ()
-   ((mainstart . 
+   ((mainstart .
       (seq (assign tmp89 (fun-ref add86))
            (tailcall tmp89 40 2))))))
 \end{lstlisting}
@@ -6197,7 +6197,7 @@ $\Rightarrow$
 \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
 (program ()
  (define (add86)
-   ((locals (x87 . Integer) (y88 . Integer)) 
+   ((locals (x87 . Integer) (y88 . Integer))
     (num-params . 2))
    ((add86start .
       (block ()
@@ -6351,7 +6351,7 @@ of your previously created test programs.
      {\ttfamily\footnotesize\color{red} select-instr.} (x86-2);
 \path[->,bend left=15] (x86-2) edge [left] node
      {\ttfamily\footnotesize\color{red} uncover-live} (x86-2-1);
-\path[->,bend right=15] (x86-2-1) edge [below] node 
+\path[->,bend right=15] (x86-2-1) edge [below] node
      {\ttfamily\footnotesize \color{red}build-inter.} (x86-2-2);
 \path[->,bend right=15] (x86-2-2) edge [left] node
      {\ttfamily\footnotesize allocate-reg.} (x86-3);
@@ -6431,9 +6431,9 @@ $R_3$).
   \Exp &::=& \gray{\Int \mid (\key{read}) \mid (\key{-}\;\Exp)
      \mid (\key{+} \; \Exp\;\Exp) \mid (\key{-} \; \Exp\;\Exp)}  \\
     &\mid&  \gray{\Var \mid \LET{\Var}{\Exp}{\Exp}}\\
-    &\mid& \gray{\key{\#t} \mid \key{\#f} 
-     \mid (\key{and}\;\Exp\;\Exp) 
-     \mid (\key{or}\;\Exp\;\Exp) 
+    &\mid& \gray{\key{\#t} \mid \key{\#f}
+     \mid (\key{and}\;\Exp\;\Exp)
+     \mid (\key{or}\;\Exp\;\Exp)
      \mid (\key{not}\;\Exp) } \\
     &\mid& \gray{(\key{eq?}\;\Exp\;\Exp) \mid \IF{\Exp}{\Exp}{\Exp}} \\
     &\mid& \gray{(\key{vector}\;\Exp^{+}) \mid
@@ -6447,7 +6447,7 @@ $R_3$).
 \]
 \end{minipage}
 }
-\caption{Syntax of $R_5$, extending $R_4$ (Figure~\ref{fig:r4-syntax}) 
+\caption{Syntax of $R_5$, extending $R_4$ (Figure~\ref{fig:r4-syntax})
   with \key{lambda}.}
 \label{fig:r5-syntax}
 \end{figure}
@@ -6571,7 +6571,7 @@ require the body's type to match the declared return type.
 The compiling of lexically-scoped functions into top-level function
 definitions is accomplished in the pass \code{convert-to-closures}
 that comes after \code{reveal-functions} and before
-\code{limit-functions}. 
+\code{limit-functions}.
 
 As usual, we shall implement the pass as a recursive function over the
 AST. All of the action is in the clauses for \key{lambda} and
@@ -6761,7 +6761,7 @@ $\Downarrow$
      {\ttfamily\footnotesize select-instr.} (x86-2);
 \path[->,bend left=15] (x86-2) edge [left] node
      {\ttfamily\footnotesize uncover-live} (x86-2-1);
-\path[->,bend right=15] (x86-2-1) edge [below] node 
+\path[->,bend right=15] (x86-2-1) edge [below] node
      {\ttfamily\footnotesize build-inter.} (x86-2-2);
 \path[->,bend right=15] (x86-2-2) edge [left] node
      {\ttfamily\footnotesize allocate-reg.} (x86-3);
@@ -6821,12 +6821,12 @@ reference results in a run-time contract violation.
 \[
 \begin{array}{rcl}
   \itm{cmp} &::= & \key{eq?} \mid \key{<} \mid \key{<=} \mid \key{>} \mid \key{>=} \\
-\Exp &::=& \Int \mid (\key{read}) \mid (\key{-}\;\Exp) 
+\Exp &::=& \Int \mid (\key{read}) \mid (\key{-}\;\Exp)
       \mid (\key{+} \; \Exp\;\Exp) \mid (\key{-} \; \Exp\;\Exp)  \\
      &\mid&  \Var \mid \LET{\Var}{\Exp}{\Exp} \\
-     &\mid& \key{\#t} \mid \key{\#f} 
-      \mid (\key{and}\;\Exp\;\Exp) 
-      \mid (\key{or}\;\Exp\;\Exp) 
+     &\mid& \key{\#t} \mid \key{\#f}
+      \mid (\key{and}\;\Exp\;\Exp)
+      \mid (\key{or}\;\Exp\;\Exp)
       \mid (\key{not}\;\Exp) \\
      &\mid& (\itm{cmp}\;\Exp\;\Exp) \mid \IF{\Exp}{\Exp}{\Exp} \\
      &\mid& (\key{vector}\;\Exp^{+}) \mid
@@ -6994,9 +6994,9 @@ extend our compiler to handle the new features of $R_6$
   \Exp &::=& \gray{\Int \mid (\key{read}) \mid (\key{-}\;\Exp)
      \mid (\key{+} \; \Exp\;\Exp) \mid (\key{-} \; \Exp\;\Exp)}  \\
     &\mid&  \gray{\Var \mid \LET{\Var}{\Exp}{\Exp}} \\
-    &\mid& \gray{\key{\#t} \mid \key{\#f} 
-     \mid (\key{and}\;\Exp\;\Exp) 
-     \mid (\key{or}\;\Exp\;\Exp) 
+    &\mid& \gray{\key{\#t} \mid \key{\#f}
+     \mid (\key{and}\;\Exp\;\Exp)
+     \mid (\key{or}\;\Exp\;\Exp)
      \mid (\key{not}\;\Exp)} \\
     &\mid& \gray{(\itm{cmp}\;\Exp\;\Exp) \mid \IF{\Exp}{\Exp}{\Exp}} \\
     &\mid& \gray{(\key{vector}\;\Exp^{+}) \mid
@@ -7211,7 +7211,7 @@ $\Rightarrow$
 (orq (int |$\itm{tagof}(T)$|) |\itm{lhs}'|)
 \end{lstlisting}
 \end{minipage}
-\end{tabular} 
+\end{tabular}
 
 \paragraph{Tag of Any}
 
@@ -7235,7 +7235,7 @@ $\Rightarrow$
 (andq (int 7) |\itm{lhs}'|)
 \end{lstlisting}
 \end{minipage}
-\end{tabular}  
+\end{tabular}
 
 \paragraph{Value of Any}
 
@@ -7285,7 +7285,7 @@ $\Rightarrow$
 (andq |$e'$| |\itm{lhs}'|)
 \end{lstlisting}
 \end{minipage}
-\end{tabular}  
+\end{tabular}
 
 %% \paragraph{Type Predicates} We leave it to the reader to
 %% devise a sequence of instructions to implement the type predicates
@@ -7447,7 +7447,7 @@ $\Rightarrow$
 \end{lstlisting}
 \end{minipage}
 \\[2ex]\hline
-\end{tabular} 
+\end{tabular}
 
 \caption{Compiling $R_7$ to $R_6$.}
 \label{fig:compile-r7-r6}
